@@ -1,14 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link href="./style.css" rel="stylesheet" />
+  <script src="./script.js" defer></script>
+  <title>Kalkulator dojazdów</title>
 </head>
 
 <body>
+  <main class="main">
+    <div class="wrapper">
+      <form id="commute-form" class="commute-form">
+        <div class="input-row">
+          <label for="distance" class="label">Dystans w jedną stronę (km)</label>
+          <input type="number" id="distance" name="distance" />
+        </div>
 
+        <div class="input-row">
+          <label for="average" class="label">Średnie spalanie (l/100km)</label>
+          <input type="number" id="average" name="average" />
+        </div>
+
+        <div class="input-row">
+          <label for="price" class="label">Cena paliwa (zł/l)</label>
+          <input type="number" id="price" name="price" />
+        </div>
+
+        <div class="input-row">
+          <label for="days" class="label">Liczba dni dojazdu w miesiącu</label>
+          <input type="number" id="days" name="days" />
+        </div>
+
+        <button class="button" id="btn-submit" type="submit">Oblicz</button>
+      </form>
+    </div>
+  </main>
 </body>
 
 </html>

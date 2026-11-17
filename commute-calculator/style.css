@@ -1,0 +1,54 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  block-size: 100dvb;
+  inline-size: 100dvi;
+}
+
+.main {
+  block-size: 100%;
+  inline-size: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commute-form {
+  min-inline-size: 600px;
+  padding: 12px 18px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 15px;
+  column-gap: 20px;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.button {
+  border: none;
+  background: none;
+
+  grid-column: 1/-1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 16px;
+  max-inline-size: 100px;
+
+  margin-inline: auto;
+}
