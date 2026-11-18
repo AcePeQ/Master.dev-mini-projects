@@ -52,7 +52,7 @@
       </form>
 
 
-      <section id="summary-section" class="summary" aria-labelledby="summary-title" aria-live="polite">
+      <section id="summary-section" class="summary" aria-labelledby="summary-title" aria-live="polite" hidden>
         <h2 id="summary-title">Podsumowanie</h2>
         <p>Szacowany miesięczny koszt dojazdów</p>
         <output id="monthly-cost" for="distance average price days">0,00 zł</output>
@@ -60,19 +60,33 @@
         <p>Szacowany dzienny koszt dojazdów</p>
         <output id="daily-cost" for="distance average price days">0,00 zł</output>
 
-        <button id="btnSaveRecord" type="button" class="btn-save-record">Zapisz wariant</button>
+        <div class="records-wrapper">
+          <h2>Warianty</h2>
+          <form action="" method="post" id="record-form" class="record-form">
+            <div class=" input-row">
+              <label for="record-name" class="label">Nazwa wariantu</label>
+              <input type="text" id="record-name" name="record_name" required aria-invalid="false"
+                aria-describedby="record-name-error" />
+              <p id="record-name-error" class="input-error hidden"></p>
+            </div>
+            <button id="btnSaveRecord" type="submit" class="btn-save-record">Zapisz wariant</button>
+          </form>
+        </div>
 
         <table>
           <thead>
             <tr>
+              <th scope="col">Nazwa wariantu</th>
               <th scope="col">Dystans w jedną stronę (km)</th>
               <th scope="col">Średnie spalanie (l/100km)</th>
               <th scope="col">Cena paliwa (zł/l)</th>
               <th scope="col">Liczba dni dojazdu w miesiącu</th>
+              <th scope="col">Szacowany miesięczny koszt dojazdów</th>
+              <th scope="col">Szacowany dzienny koszt dojazdów</th>
             </tr>
           </thead>
 
-          <tbody id="table-body">
+          <tbody id="records-table">
           </tbody>
         </table>
       </section>

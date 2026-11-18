@@ -296,7 +296,7 @@ hgroup p {
 .summary tbody {
   display: table;
   inline-size: 100%;
-  min-inline-size: 680px;
+  min-inline-size: 1220px;
   table-layout: fixed;
   border-collapse: collapse;
 }
@@ -308,12 +308,13 @@ hgroup p {
   vertical-align: middle;
 }
 
-.summary th {
+.summary thead th {
   color: #ffffff;
   background-color: var(--color-primary-hover);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.35;
+  overflow-wrap: break-word;
 }
 
 .summary td {
@@ -322,6 +323,44 @@ hgroup p {
   background-color: var(--color-surface);
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
+}
+
+.summary tbody th {
+  color: var(--color-text);
+  border-block-end: 1px solid var(--color-border);
+  background-color: #f2f8f4;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.summary tr > :first-child {
+  inline-size: 180px;
+}
+
+.summary tr > :nth-child(n + 2):nth-child(-n + 5) {
+  inline-size: 160px;
+}
+
+.summary tr > :nth-child(n + 6) {
+  inline-size: 200px;
+}
+
+.summary thead th:nth-child(6) {
+  border-inline-start: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.summary tbody td:nth-child(6) {
+  border-inline-start: 2px solid rgba(25, 122, 75, 0.18);
+}
+
+.summary thead th:nth-child(n + 6) {
+  background-color: var(--color-primary);
+}
+
+.summary td:nth-child(n + 6) {
+  color: var(--color-primary-hover);
+  font-weight: 700;
 }
 
 .summary tbody tr:nth-child(even) td {
