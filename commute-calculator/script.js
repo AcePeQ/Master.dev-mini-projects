@@ -32,7 +32,7 @@ function init() {
   }
 
   function calculateDailyCost(distance, average, price) {
-    return (2 * distance * 1 * average * price) / 100
+    return (2 * distance * average * price) / 100
   }
 
   function normalizeFormData(formData) {
