@@ -52,13 +52,29 @@
       </form>
 
 
-      <section id="summary-section" class="summary" aria-labelledby="summary-title" aria-live="polite" hidden>
+      <section id="summary-section" class="summary" aria-labelledby="summary-title" aria-live="polite">
         <h2 id="summary-title">Podsumowanie</h2>
         <p>Szacowany miesięczny koszt dojazdów</p>
         <output id="monthly-cost" for="distance average price days">0,00 zł</output>
 
         <p>Szacowany dzienny koszt dojazdów</p>
         <output id="daily-cost" for="distance average price days">0,00 zł</output>
+
+        <button id="btnSaveRecord" type="button" class="btn-save-record">Zapisz wariant</button>
+
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Dystans w jedną stronę (km)</th>
+              <th scope="col">Średnie spalanie (l/100km)</th>
+              <th scope="col">Cena paliwa (zł/l)</th>
+              <th scope="col">Liczba dni dojazdu w miesiącu</th>
+            </tr>
+          </thead>
+
+          <tbody id="table-body">
+          </tbody>
+        </table>
       </section>
     </div>
   </main>
