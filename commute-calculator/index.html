@@ -14,35 +14,37 @@
     <div class="wrapper">
       <hgroup>
         <h1>Kalkulator dojazdów</h1>
-        <p>Kalkulator ten służy do obliczania ceny dojazdu w jedną stronę, dzięki określeniu średniemu spalaniu, ceny
-          paliwa oraz liczbie dni doajzdu w miesiącu</p>
+        <p>Oblicz miesięczny koszt dojazdów w obie strony na podstawie dystansu, średniego spalania, ceny paliwa oraz
+          liczby dni dojazdu.</p>
       </hgroup>
 
 
       <form action="" method="get" id="commute-form" class="commute-form">
         <div class="input-row">
           <label for="distance" class="label">Dystans w jedną stronę (km)</label>
-          <input type="number" id="distance" name="distance" required aria-invalid="false"
+          <input min="0" step="0.01" type="number" id="distance" name="distance" required aria-invalid="false"
             aria-describedby="distance-error" />
           <p id="distance-error" class="input-error hidden"></p>
         </div>
 
         <div class="input-row">
           <label for="average" class="label">Średnie spalanie (l/100km)</label>
-          <input type="number" id="average" name="average" required aria-invalid="false"
+          <input type="number" min="0" step="0.01" id="average" name="average" required aria-invalid="false"
             aria-describedby="average-error" />
           <p id="average-error" class="input-error hidden"></p>
         </div>
 
         <div class="input-row">
           <label for="price" class="label">Cena paliwa (zł/l)</label>
-          <input type="number" id="price" name="price" required aria-invalid="false" aria-describedby="price-error" />
+          <input type="number" min="0" step="0.01" id="price" name="price" required aria-invalid="false"
+            aria-describedby="price-error" />
           <p id="price-error" class="input-error hidden"></p>
         </div>
 
         <div class=" input-row">
           <label for="days" class="label">Liczba dni dojazdu w miesiącu</label>
-          <input type="number" id="days" name="days" required aria-invalid="false" aria-describedby="days-error" />
+          <input type="number" min="0" step="1" id="days" name="days" required aria-invalid="false"
+            aria-describedby="days-error" />
           <p id="days-error" class="input-error hidden"></p>
         </div>
 
@@ -50,10 +52,13 @@
       </form>
 
 
-      <section class="summary" aria-labelledby="summary-title" aria-live="polite" hidden>
+      <section id="summary-section" class="summary" aria-labelledby="summary-title" aria-live="polite" hidden>
         <h2 id="summary-title">Podsumowanie</h2>
         <p>Szacowany miesięczny koszt dojazdów</p>
         <output id="monthly-cost" for="distance average price days">0,00 zł</output>
+
+        <p>Szacowany dzienny koszt dojazdów</p>
+        <output id="daily-cost" for="distance average price days">0,00 zł</output>
       </section>
     </div>
   </main>
