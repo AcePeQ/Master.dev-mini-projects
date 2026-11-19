@@ -209,6 +209,8 @@ function init() {
         const routeOptionEl = renderRouteOption(route);
         selectRoutesEl.append(routeOptionEl)
       })
+
+      selectRoutesEl.addEventListener("change", handleRouteChange);
     } catch (error) {
       isError = true;
       console.error(error);
@@ -243,10 +245,17 @@ function init() {
 
   function renderRouteOption(route) {
     const optionEl = document.createElement("option");
-    optionEl.value = route.id;
+    optionEl.value = route.distance;
     optionEl.textContent = route.name;
 
     return optionEl;
+  }
+
+  function handleRouteChange(event) {
+    const distanceValue = event.target.value;
+
+    const distanceInputEl = document.querySelector("#distance");
+    distanceInputEl.value = distanceValue;
   }
 
   renderRoutes();
