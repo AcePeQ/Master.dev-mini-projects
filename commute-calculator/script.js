@@ -3,12 +3,14 @@ function init() {
   let currentRecord;
   let totalMonthCost;
   let totalDailyCost;
+  let recordIndex = 0;
 
   const commuteFormEl = document.querySelector("#commute-form");
   const saveRecordFormEl = document.querySelector("#record-form");
   const summarySectionEl = document.querySelector("#summary-section");
   const montlyCostOutputEl = document.querySelector("#monthly-cost");
   const dailyCostOutputEl = document.querySelector("#daily-cost");
+  const recordsTableEl = document.querySelector("#records-table")
 
   function handleFormSubmit(event) {
     event.preventDefault();
@@ -29,8 +31,13 @@ function init() {
     const formData = new FormData(event.currentTarget);
     const formObject = Object.fromEntries(formData.entries());
 
+    const isNameInputValid = validateNameInput(formObject["record_name"]);
+
+    if (!isNameInputValid) return;
+
     const newRecord = {
-      name: formObject["record_name"],
+      id: recordIndex,
+      name: formObject["record_name"].trim(),
       totalMonthCost,
       totalDailyCost,
       ...currentRecord
@@ -41,9 +48,20 @@ function init() {
     renderRecords();
   }
 
-  function renderRecords() {
-    const recordsTableEl = document.querySelector("#records-table")
+  function validateNameInput(value) {
+    const recordNameInputEl = document.querySelector("#record-name");
+    const recordNameErrorEl = document.querySelector("#record-name-error");
 
+    const isValueValid = value.trim().length > 0;
+
+    recordNameInputEl.ariaInvalid = isValueValid ? "false" : "true";
+    recordNameErrorEl.textContent = isValueValid ? "" : "Enter valid name format!";
+    recordNameErrorEl.classList.toggle("hidden", isValueValid)
+
+    return isValueValid;
+  }
+
+  function renderRecords() {
     recordsTableEl.textContent = "";
 
     savedRecords.forEach(record => {
@@ -54,6 +72,8 @@ function init() {
 
   function renderRecordRow(record) {
     const tableRowEl = document.createElement("tr");
+    tableRowEl.dataset.recordId = record.id;
+
     const tableNameEl = document.createElement("th");
     tableNameEl.scope = "row";
     tableNameEl.textContent = record.name;
@@ -76,6 +96,14 @@ function init() {
     const tableTotalDailyCostEl = document.createElement("td");
     tableTotalDailyCostEl.textContent = `${record.totalDailyCost.toFixed(2)} zł`;
 
+    const tableActionEl = document.createElement("td");
+
+    const tableDeleteRowEl = document.createElement("button");
+    tableDeleteRowEl.dataset.action = "delete";
+    tableDeleteRowEl.textContent = "Usuń";
+
+    tableActionEl.append(tableDeleteRowEl);
+
     tableRowEl.append(
       tableNameEl,
       tableDistanceEl,
@@ -83,13 +111,15 @@ function init() {
       tablePriceEl,
       tableDaysEl,
       tableTotalMonthCostEl,
-      tableTotalDailyCostEl
+      tableTotalDailyCostEl,
+      tableActionEl,
     );
 
     return tableRowEl;
   }
 
   function saveRecord(recordData) {
+    recordIndex++;
     savedRecords.push(recordData);
   }
 
@@ -123,8 +153,31 @@ function init() {
     return [key, Number(value)];
   }
 
+  function handleDeleteTableRow(event) {
+    const target = event.target;
+    const targetAction = target.dataset.action;
+
+    console.log(target.tagName)
+    console.log(targetAction)
+
+    if (target.tagName !== "BUTTON" || targetAction !== "delete") return;
+
+    const recordRow = target.closest("tr");
+    const rowId = recordRow.dataset.recordId;
+
+    if (!rowId) return;
+
+    const itemArrayIndex = savedRecords.findIndex(record => record.id === Number(rowId));
+    if (itemArrayIndex === -1) return;
+
+    savedRecords.splice(itemArrayIndex, 1);
+
+    renderRecords();
+  }
+
   commuteFormEl.addEventListener("submit", handleFormSubmit);
   saveRecordFormEl.addEventListener("submit", handleRecordSubmit);
+  recordsTableEl.addEventListener("click", handleDeleteTableRow);
 }
 
 init();

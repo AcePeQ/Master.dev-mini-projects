@@ -18,6 +18,13 @@
           liczby dni dojazdu.</p>
       </hgroup>
 
+      <div class="routesWrapper">
+        <h2>Trasy</h2>
+
+        <div class="routes-select-wrapper">
+          <select id="routes-select" name="routes-select" class="routes-select"></select>
+        </div>
+      </div>
 
       <form action="" method="get" id="commute-form" class="commute-form">
         <div class="input-row">
@@ -63,7 +70,7 @@
         <div class="records-wrapper">
           <h2>Warianty</h2>
           <form action="" method="post" id="record-form" class="record-form">
-            <div class=" input-row">
+            <div class="input-row">
               <label for="record-name" class="label">Nazwa wariantu</label>
               <input type="text" id="record-name" name="record_name" required aria-invalid="false"
                 aria-describedby="record-name-error" />
@@ -83,6 +90,7 @@
               <th scope="col">Liczba dni dojazdu w miesiącu</th>
               <th scope="col">Szacowany miesięczny koszt dojazdów</th>
               <th scope="col">Szacowany dzienny koszt dojazdów</th>
+              <th scope="col">Akcje</th>
             </tr>
           </thead>
 

@@ -1,0 +1,14 @@
+{
+  "routes": [
+    {
+      "id": 0,
+      "name": "Dom - Warszawa",
+      "distance": 100
+    },
+    {
+      "id": 1,
+      "name": "Dom - Wegrow",
+      "distance": 30
+    }
+  ]
+}
