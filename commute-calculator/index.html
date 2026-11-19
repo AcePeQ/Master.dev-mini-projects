@@ -20,10 +20,12 @@
 
       <div class="routesWrapper">
         <label for="routes-select">Wybierz trasę</label>
-        <div class="routes-select-wrapper">
+        <div id="routes-select-wrapper" class="routes-select-wrapper">
           <select id="routes-select" name="routes-select" class="routes-select">
             <option value="" selected>Wybierz zapisaną trasę</option>
           </select>
+          <p id="routes-error" class="input-error hidden"></p>
+          <div class="routes-loader hidden" id="routes-loader"></div>
         </div>
       </div>
 

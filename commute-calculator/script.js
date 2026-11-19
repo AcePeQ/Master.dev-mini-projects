@@ -181,6 +181,75 @@ function init() {
     renderRecords();
   }
 
+  async function fetchRoutes() {
+    const res = await fetch("./routes.json");
+
+    if (!res.ok) {
+      throw Error("Nie udało pobrać się tras.")
+    }
+
+    const data = await res.json();
+
+    return data;
+  }
+
+  async function renderRoutes() {
+    const selectRoutesEl = document.querySelector("#routes-select");
+    const routesLoaderEl = document.querySelector("#routes-loader");
+    const selectRoutesErrorEl = document.querySelector("#routes-error");
+
+    let isLoading = true;
+    let isError = false;
+
+    try {
+      handleWrapperStatus(isLoading, isError, selectRoutesEl, routesLoaderEl, selectRoutesErrorEl)
+      const { routes } = await fetchRoutes();
+
+      routes.forEach(route => {
+        const routeOptionEl = renderRouteOption(route);
+        selectRoutesEl.append(routeOptionEl)
+      })
+    } catch (error) {
+      isError = true;
+      console.error(error);
+    } finally {
+      isLoading = false;
+      handleWrapperStatus(isLoading, isError, selectRoutesEl, routesLoaderEl, selectRoutesErrorEl)
+    }
+  }
+
+  function handleWrapperStatus(isLoading, isError, selectEl, LoaderEl, errorEl) {
+    if (isError && !isLoading) {
+      selectEl.classList.add("hidden");
+      LoaderEl.classList.add("hidden");
+
+      errorEl.textContent = "Sorry! We couldn't render your routes!";
+      errorEl.classList.remove("hidden");
+    }
+
+    if (!isError && isLoading) {
+      selectEl.classList.add("hidden");
+      errorEl.textContent = "";
+      errorEl.classList.add("hidden");
+      LoaderEl.classList.remove("hidden");
+    }
+
+    if (!isError && !isLoading) {
+      selectEl.classList.remove("hidden");
+      errorEl.classList.add("hidden");
+      LoaderEl.classList.add("hidden");
+    }
+  }
+
+  function renderRouteOption(route) {
+    const optionEl = document.createElement("option");
+    optionEl.value = route.id;
+    optionEl.textContent = route.name;
+
+    return optionEl;
+  }
+
+  renderRoutes();
   commuteFormEl.addEventListener("submit", handleFormSubmit);
   saveRecordFormEl.addEventListener("submit", handleRecordSubmit);
   recordsTableEl.addEventListener("click", handleDeleteTableRow);
