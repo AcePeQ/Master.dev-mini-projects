@@ -101,6 +101,12 @@ function init() {
     const tableDeleteRowEl = document.createElement("button");
     tableDeleteRowEl.dataset.action = "delete";
     tableDeleteRowEl.textContent = "Usuń";
+    tableDeleteRowEl.type = "button";
+    tableDeleteRowEl.className = "btn-delete-record";
+    tableDeleteRowEl.setAttribute(
+      "aria-label",
+      `Usuń wariant ${record.name}`
+    );
 
     tableActionEl.append(tableDeleteRowEl);
 

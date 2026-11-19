@@ -80,6 +80,76 @@ hgroup p {
   line-height: 1.65;
 }
 
+.routesWrapper {
+  display: grid;
+  gap: 12px;
+  margin: 28px 40px 0;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background-color: #f7faf8;
+  padding: 18px 20px;
+}
+
+.routesWrapper h2 {
+  color: var(--color-primary-hover);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.routes-select-wrapper {
+  position: relative;
+}
+
+.routes-select-wrapper::after {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 16px;
+  block-size: 8px;
+  inline-size: 8px;
+  border-inline-end: 2px solid var(--color-primary-hover);
+  border-block-end: 2px solid var(--color-primary-hover);
+  content: "";
+  pointer-events: none;
+  transform: translateY(-70%) rotate(45deg);
+}
+
+.routes-select {
+  appearance: none;
+  block-size: 48px;
+  inline-size: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  outline: none;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  padding: 0 44px 0 14px;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.routes-select:hover {
+  border-color: #acbbb3;
+}
+
+.routes-select:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-focus);
+}
+
+.routes-select:disabled {
+  color: var(--color-muted);
+  background-color: #eef2f0;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
 .commute-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -296,7 +366,7 @@ hgroup p {
 .summary tbody {
   display: table;
   inline-size: 100%;
-  min-inline-size: 1220px;
+  min-inline-size: 1330px;
   table-layout: fixed;
   border-collapse: collapse;
 }
@@ -346,6 +416,11 @@ hgroup p {
   inline-size: 200px;
 }
 
+.summary tr > :nth-child(8) {
+  inline-size: 110px;
+  text-align: center;
+}
+
 .summary thead th:nth-child(6) {
   border-inline-start: 2px solid rgba(255, 255, 255, 0.35);
 }
@@ -361,6 +436,54 @@ hgroup p {
 .summary td:nth-child(n + 6) {
   color: var(--color-primary-hover);
   font-weight: 700;
+}
+
+.summary [data-action="delete"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 36px;
+  border: 1px solid var(--color-error);
+  border-radius: 8px;
+  color: var(--color-error);
+  background-color: transparent;
+  padding: 7px 12px;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.summary [data-action="delete"]:hover {
+  color: #ffffff;
+  background-color: var(--color-error);
+  box-shadow: 0 6px 14px rgba(201, 54, 43, 0.2);
+  transform: translateY(-1px);
+}
+
+.summary [data-action="delete"]:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.summary [data-action="delete"]:focus-visible {
+  outline: 3px solid var(--color-error-focus);
+  outline-offset: 3px;
+}
+
+.summary [data-action="delete"]:disabled {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  background-color: #f4f6f5;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
 }
 
 .summary tbody tr:nth-child(even) td {
@@ -389,6 +512,11 @@ hgroup p {
     padding: 28px 20px 0;
   }
 
+  .routesWrapper {
+    margin: 22px 20px 0;
+    padding: 16px;
+  }
+
   .commute-form {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -410,7 +538,9 @@ hgroup p {
 
   .input-row input,
   .button,
-  .btn-save-record {
+  .btn-save-record,
+  .routes-select,
+  .summary [data-action="delete"] {
     transition: none;
   }
 }
