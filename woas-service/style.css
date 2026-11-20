@@ -1,6 +1,4 @@
 :root {
-  color-scheme: light dark;
-
   --color-page: light-dark(#f7f5ef, #141816);
   --color-surface: light-dark(#ffffff, #1c2320);
   --color-surface-soft: light-dark(#eeebe2, #242d28);
