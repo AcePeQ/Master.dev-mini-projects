@@ -1,24 +1,31 @@
 :root {
-  --color-page: #f7f5ef;
-  --color-surface: #ffffff;
-  --color-surface-soft: #eeebe2;
-  --color-text: #202b29;
-  --color-muted: #59635e;
-  --color-border: #d8dcd1;
-  --color-accent: #a84125;
-  --color-accent-hover: #87301a;
-  --color-on-accent: #ffffff;
-  --color-accent-soft: #f3e3d7;
-  --color-focus: #a84125;
-  --color-footer: #e9ece4;
+  color-scheme: light dark;
+
+  --color-page: light-dark(#f7f5ef, #141816);
+  --color-surface: light-dark(#ffffff, #1c2320);
+  --color-surface-soft: light-dark(#eeebe2, #242d28);
+
+  --color-text: light-dark(#202b29, #f3f2e9);
+  --color-muted: light-dark(#59635e, #b7c1b8);
+  --color-border: light-dark(#d8dcd1, #46554a);
+
+  --color-accent: light-dark(#a84125, #ffad8f);
+  --color-accent-hover: light-dark(#87301a, #ffc3ad);
+  --color-on-accent: light-dark(#ffffff, #24150f);
+  --color-accent-soft: light-dark(#f3e3d7, #332720);
+
+  --color-focus: light-dark(#a84125, #ffbb9f);
+  --color-footer: light-dark(#e9ece4, #101411);
 
   --font-body: "Inter", "Segoe UI", Arial, sans-serif;
   --content-width: 1200px;
+
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
+
   --section-space: clamp(3.5rem, 7vw, 6rem);
   --radius-card: 1rem;
 }
@@ -31,6 +38,15 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+html:has(#theme-switcher input[value="light"]:checked) {
+  color-scheme: light;
+}
+
+html:has(#theme-switcher input[value="dark"]:checked) {
+  color-scheme: dark;
 }
 
 body {
