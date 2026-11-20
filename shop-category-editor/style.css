@@ -237,7 +237,7 @@ select {
 }
 
 .parent-list,
-.children-list {
+.parent-list ul {
   list-style: none;
 }
 
@@ -245,84 +245,53 @@ select {
   grid-column: 1 / -1;
 }
 
-.parent-item,
-.children-item {
-  position: relative;
+.parent-list ul {
+  padding-inline-start: 32px;
 }
 
-.parent-item > p,
-.children-item > p,
+.list-item,
+.parent-item,
+.children-item {
+  min-inline-size: 0;
+}
+
+.list-item__wrapper,
 .parent-item__wrapper,
 .children-item__wrapper {
   display: flex;
   align-items: center;
-  min-block-size: 64px;
-  border-block-end: 1px solid var(--color-border);
-}
-
-.parent-item:last-child:not(:has(> .children-list)) > p,
-.parent-item:last-child:not(:has(> .children-list)) > .parent-item__wrapper,
-.children-item:last-child:not(:has(> .children-list)) > p,
-.children-item:last-child:not(:has(> .children-list)) > .children-item__wrapper {
-  border-block-end-color: transparent;
-}
-
-.parent-item > p {
-  padding: 14px 24px;
-  font-size: 1.05rem;
-  font-weight: 800;
-  overflow-wrap: anywhere;
-}
-
-.parent-item__wrapper,
-.children-item__wrapper {
   justify-content: space-between;
   gap: 16px;
+  min-block-size: 64px;
+  border-block-end: 1px solid var(--color-border);
   padding: 11px 20px;
 }
 
+.list-item__wrapper > p,
 .parent-item__wrapper > p,
 .children-item__wrapper > p {
   min-inline-size: 0;
   flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
   overflow-wrap: anywhere;
 }
 
-.parent-item__wrapper > p {
+.parent-list > .list-item > .list-item__wrapper > p,
+.parent-list > .parent-item > .parent-item__wrapper > p {
   font-size: 1.05rem;
   font-weight: 800;
 }
 
-.children-item > p {
-  padding: 14px 20px;
-  font-size: 1rem;
-  font-weight: 500;
-  overflow-wrap: anywhere;
+.parent-list > .list-item:last-child:not(:has(> ul)) > .list-item__wrapper,
+.parent-list > .parent-item:last-child:not(:has(> ul)) > .parent-item__wrapper {
+  border-block-end-color: transparent;
 }
 
-.children-item__wrapper > p {
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.children-list {
-  padding-inline-start: 32px;
-}
-
-.children-list .children-list {
-  padding-inline-start: 32px;
-}
-
-.parent-item > button,
-.children-item > button,
-.parent-item__wrapper > button,
-.children-item__wrapper > button,
-.delete-button,
-[data-action="delete"] {
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 12px;
-  inset-inline-end: 20px;
+.category-content .delete-button,
+.category-content [data-action="delete"] {
+  position: static;
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -342,42 +311,35 @@ select {
     transform 150ms ease;
 }
 
-.parent-item__wrapper > button,
-.children-item__wrapper > button {
-  position: static;
-  flex: 0 0 auto;
-}
-
-.parent-item > button:hover,
-.children-item > button:hover,
-.parent-item__wrapper > button:hover,
-.children-item__wrapper > button:hover,
-.delete-button:hover,
-[data-action="delete"]:hover {
+.category-content .delete-button:hover,
+.category-content [data-action="delete"]:hover {
   color: #ffffff;
   background-color: var(--color-danger);
   box-shadow: 0 6px 14px rgba(220, 38, 38, 0.18);
   transform: translateY(-1px);
 }
 
-.parent-item > button:active,
-.children-item > button:active,
-.parent-item__wrapper > button:active,
-.children-item__wrapper > button:active,
-.delete-button:active,
-[data-action="delete"]:active {
+.category-content .delete-button:active,
+.category-content [data-action="delete"]:active {
   box-shadow: none;
   transform: translateY(0);
 }
 
-.parent-item > button:focus-visible,
-.children-item > button:focus-visible,
-.parent-item__wrapper > button:focus-visible,
-.children-item__wrapper > button:focus-visible,
-.delete-button:focus-visible,
-[data-action="delete"]:focus-visible {
+.category-content .delete-button:focus-visible,
+.category-content [data-action="delete"]:focus-visible {
   outline: 3px solid var(--color-danger-focus);
   outline-offset: 3px;
+}
+
+.category-content .delete-button:disabled,
+.category-content [data-action="delete"]:disabled {
+  border-color: var(--color-border-strong);
+  color: var(--color-muted);
+  background-color: #f1f3f6;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
 }
 
 .parent-list:empty::after {
@@ -427,31 +389,18 @@ select {
     font-size: 0.925rem;
   }
 
-  .parent-item > p,
-  .parent-item__wrapper {
-    padding-inline: 18px;
-  }
-
-  .children-item > p,
+  .list-item__wrapper,
+  .parent-item__wrapper,
   .children-item__wrapper {
     padding-inline: 16px;
   }
 
-  .children-list {
+  .parent-list ul {
     padding-inline-start: 20px;
   }
 
-  .children-list .children-list {
-    padding-inline-start: 20px;
-  }
-
-  .parent-item > button,
-  .children-item > button,
-  .parent-item__wrapper > button,
-  .children-item__wrapper > button,
-  .delete-button,
-  [data-action="delete"] {
-    inset-inline-end: 12px;
+  .category-content .delete-button,
+  .category-content [data-action="delete"] {
     min-inline-size: 72px;
     padding-inline: 10px;
   }
@@ -461,12 +410,8 @@ select {
   .form-row input,
   .form-row select,
   .category-form > button[type="submit"],
-  .parent-item > button,
-  .children-item > button,
-  .parent-item__wrapper > button,
-  .children-item__wrapper > button,
-  .delete-button,
-  [data-action="delete"] {
+  .category-content .delete-button,
+  .category-content [data-action="delete"] {
     transition: none;
   }
 }
