@@ -26,6 +26,8 @@ const categories = [
 ];
 
 function init() {
+  const formAddCategoryEl = document.querySelector("#add-category-form");
+
   function renderCategoryList(arr, parentNode) {
     for (const category of arr) {
       const categoryItemNode = createCategoryListItemNode(category)
@@ -86,6 +88,9 @@ function init() {
   function renderCategoryOptions() {
     const parentNode = document.querySelector("#category-parent-select");
     const categoryArray = getCategoryNamesAndIdsArray(categories);
+    categoryArray.unshift({ label: "Kategoria główna", id: 0 })
+
+    parentNode.textContent = "";
 
     categoryArray.forEach(category => {
       const optionEl = renderCategoryOption(category);
@@ -121,6 +126,83 @@ function init() {
     return optionEl;
   }
 
+  function handleAddCategorySubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const formObject = Object.fromEntries(formData.entries());
+
+    const categoryName = formObject.category_name.trim();
+    const categoryId = Number(formObject.category_parent);
+
+    if (!categoryName) {
+      alert("Niepoprawna nazwa kategorii.");
+      return;
+    }
+
+    findAndAddCategory(categories, categoryName, categoryId);
+    updatePage();
+
+    formAddCategoryEl.reset();
+  }
+
+  function findAndAddCategory(arr, categoryName, parentId) {
+    if (parentId === 0) {
+      const categoryId = getUnusedId();
+
+      arr.push({
+        id: categoryId,
+        name: categoryName,
+        children: [],
+      })
+
+      return;
+    }
+
+    for (const category of arr) {
+      if (category.id === parentId) {
+        const categoryId = getUnusedId();
+        category.children.push({
+          id: categoryId,
+          name: categoryName,
+          children: [],
+        })
+        return;
+      }
+
+      if (category.children.length > 0) {
+        findAndAddCategory(category.children, categoryName, parentId);
+      }
+    }
+  }
+
+  function getUnusedId() {
+    const categoryIds = getAllCategoryIds(categories);
+
+    let index = 1;
+
+    do {
+      index++;
+    } while (!categoryIds.includes(index));
+
+    return index;
+  }
+
+  function getAllCategoryIds(arr) {
+    let result = [];
+
+    for (const category of arr) {
+      result.push(Number(category.id));
+
+      if (category.children.length > 0) {
+        const output = getAllCategoryIds(category.children);
+        result = [...result, ...output];
+      }
+    }
+
+    return result;
+  }
+
   function updatePage() {
     const categoryCountEl = document.querySelector("#category-count");
     const categoryParentListEl = document.querySelector("#parent-list");
@@ -135,6 +217,7 @@ function init() {
   }
 
   updatePage();
+  formAddCategoryEl.addEventListener("submit", handleAddCategorySubmit);
 }
 
 init();
