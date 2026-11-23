@@ -84,11 +84,41 @@ function init() {
   }
 
   function renderCategoryOptions() {
+    const parentNode = document.querySelector("#category-parent-select");
+    const categoryArray = getCategoryNamesAndIdsArray(categories);
 
+    categoryArray.forEach(category => {
+      const optionEl = renderCategoryOption(category);
+      parentNode.append(optionEl);
+    })
+  }
+
+  function getCategoryNamesAndIdsArray(arr) {
+    let result = [];
+
+    for (const category of arr) {
+      let categoryObj = {
+        label: category.name,
+        id: category.id,
+      }
+
+      result.push(categoryObj);
+
+      if (category.children.length > 0) {
+        const output = getCategoryNamesAndIdsArray(category.children);
+        result = [...result, ...output];
+      }
+    }
+
+    return result;
   }
 
   function renderCategoryOption(option) {
+    const optionEl = document.createElement("option");
+    optionEl.value = option.id;
+    optionEl.textContent = option.label;
 
+    return optionEl;
   }
 
   function updatePage() {
@@ -97,6 +127,8 @@ function init() {
 
     const categorySum = countCategoryItems(categories);
     categoryCountEl.textContent = `${categorySum} kategori${categorySum === 1 ? "a" : "i"}`;
+
+    renderCategoryOptions();
 
     categoryParentListEl.textContent = ""
     renderCategoryList(categories, categoryParentListEl);
