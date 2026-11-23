@@ -103,19 +103,21 @@ function init() {
     })
   }
 
-  function getCategoryNamesAndIdsArray(arr) {
+  function getCategoryNamesAndIdsArray(arr, path = "") {
     let result = [];
 
     for (const category of arr) {
-      let categoryObj = {
-        label: category.name,
+      const resultPath = path + `${path === "" ? "" : " / "}` + category.name;
+
+      const categoryObj = {
+        label: resultPath,
         id: category.id,
       }
 
       result.push(categoryObj);
 
       if (category.children.length > 0) {
-        const output = getCategoryNamesAndIdsArray(category.children);
+        const output = getCategoryNamesAndIdsArray(category.children, resultPath);
         result = [...result, ...output];
       }
     }
@@ -212,9 +214,9 @@ function init() {
 
     let index = 1;
 
-    do {
+    while (categoryIds.includes(index)) {
       index++;
-    } while (!categoryIds.includes(index));
+    }
 
     return index;
   }
@@ -239,7 +241,7 @@ function init() {
     const categoryParentListEl = document.querySelector("#parent-list");
 
     const categorySum = countCategoryItems(categories);
-    categoryCountEl.textContent = `${categorySum} kategori${categorySum === 1 ? "a" : "i"}`;
+    categoryCountEl.textContent = `${categorySum} kategori${categorySum === 1 ? "a" : "e"}`;
 
     renderCategoryOptions();
 
