@@ -57,7 +57,7 @@ select {
   padding: 72px 48px 96px;
 }
 
-.editor-section > h1 {
+.editor-section>h1 {
   margin-block-end: 38px;
   font-size: clamp(2.25rem, 4vw, 3.35rem);
   font-weight: 800;
@@ -72,6 +72,13 @@ select {
   gap: 18px;
 }
 
+.edit-panel-forms {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
 .editor-form__wrapper,
 .category-content {
   overflow: hidden;
@@ -81,15 +88,15 @@ select {
   box-shadow: var(--shadow-panel);
 }
 
-.editor-form__wrapper > h2,
-.category-content__header > h2 {
+.editor-form__wrapper>h2,
+.category-content__header>h2 {
   font-size: 1.65rem;
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.025em;
 }
 
-.editor-form__wrapper > h2 {
+.editor-form__wrapper>h2 {
   border-block-end: 1px solid var(--color-border);
   padding: 20px 24px;
 }
@@ -164,7 +171,7 @@ select {
   opacity: 0.75;
 }
 
-.category-form > button[type="submit"] {
+.category-form>button[type="submit"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -185,23 +192,23 @@ select {
     transform 160ms ease;
 }
 
-.category-form > button[type="submit"]:hover {
+.category-form>button[type="submit"]:hover {
   background: var(--color-primary-hover);
   box-shadow: 0 10px 22px rgba(22, 112, 235, 0.26);
   transform: translateY(-1px);
 }
 
-.category-form > button[type="submit"]:active {
+.category-form>button[type="submit"]:active {
   box-shadow: 0 4px 10px rgba(22, 112, 235, 0.18);
   transform: translateY(0);
 }
 
-.category-form > button[type="submit"]:focus-visible {
+.category-form>button[type="submit"]:focus-visible {
   outline: 3px solid var(--color-primary-focus);
   outline-offset: 3px;
 }
 
-.category-form > button[type="submit"]:disabled {
+.category-form>button[type="submit"]:disabled {
   background: #aab3bf;
   box-shadow: none;
   cursor: not-allowed;
@@ -215,8 +222,8 @@ select {
   align-items: center;
 }
 
-.category-content__header > h2,
-.category-content__header > #category-count {
+.category-content__header>h2,
+.category-content__header>#category-count {
   min-block-size: 74px;
   display: flex;
   align-items: center;
@@ -224,7 +231,7 @@ select {
   padding-block: 18px;
 }
 
-.category-content__header > h2 {
+.category-content__header>h2 {
   padding-inline-start: 24px;
 }
 
@@ -267,9 +274,9 @@ select {
   padding: 11px 20px;
 }
 
-.list-item__wrapper > p,
-.parent-item__wrapper > p,
-.children-item__wrapper > p {
+.list-item__wrapper>p,
+.parent-item__wrapper>p,
+.children-item__wrapper>p {
   min-inline-size: 0;
   flex: 1;
   font-size: 1rem;
@@ -277,14 +284,14 @@ select {
   overflow-wrap: anywhere;
 }
 
-.parent-list > .list-item > .list-item__wrapper > p,
-.parent-list > .parent-item > .parent-item__wrapper > p {
+.parent-list>.list-item>.list-item__wrapper>p,
+.parent-list>.parent-item>.parent-item__wrapper>p {
   font-size: 1.05rem;
   font-weight: 800;
 }
 
-.parent-list > .list-item:last-child:not(:has(> ul)) > .list-item__wrapper,
-.parent-list > .parent-item:last-child:not(:has(> ul)) > .parent-item__wrapper {
+.parent-list>.list-item:last-child:not(:has(> ul))>.list-item__wrapper,
+.parent-list>.parent-item:last-child:not(:has(> ul))>.parent-item__wrapper {
   border-block-end-color: transparent;
 }
 
@@ -365,22 +372,22 @@ select {
     padding: 32px 16px 56px;
   }
 
-  .editor-section > h1 {
+  .editor-section>h1 {
     margin-block-end: 26px;
     font-size: 2.15rem;
   }
 
-  .editor-form__wrapper > h2,
-  .category-content__header > h2 {
+  .editor-form__wrapper>h2,
+  .category-content__header>h2 {
     font-size: 1.35rem;
   }
 
-  .editor-form__wrapper > h2,
+  .editor-form__wrapper>h2,
   .category-form {
     padding-inline: 18px;
   }
 
-  .category-content__header > h2 {
+  .category-content__header>h2 {
     padding-inline-start: 18px;
   }
 
@@ -407,9 +414,10 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .form-row input,
   .form-row select,
-  .category-form > button[type="submit"],
+  .category-form>button[type="submit"],
   .category-content .delete-button,
   .category-content [data-action="delete"] {
     transition: none;

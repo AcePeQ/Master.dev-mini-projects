@@ -15,24 +15,48 @@
       <h1 id="section-title">Edytor kategorii</h1>
 
       <div class="editor-panel">
-        <div class="editor-form__wrapper">
-          <h2>Dodaj kategorię</h2>
+        <div class="edit-panel-forms">
+          <div class="editor-form__wrapper">
+            <h2>Dodaj kategorię</h2>
 
-          <form action="#" method="post" id="add-category-form" class="category-form">
-            <div class="form-row">
-              <label for="category-name">Nazwa kategorii</label>
-              <input type="text" name="category_name" id="category-name" required />
-            </div>
+            <form action="#" method="post" id="add-category-form" class="category-form">
+              <div class="form-row">
+                <label for="category-name">Nazwa kategorii</label>
+                <input type="text" name="category_name" id="category-name" required />
+              </div>
 
-            <div class="form-row">
-              <label for="category-parent-select">Kategoria nadrzędna</label>
-              <select id="category-parent-select" name="category_parent">
-                <option value="0" selected>Kategoria główna</option>
-              </select>
-            </div>
+              <div class="form-row">
+                <label for="category-parent-select">Kategoria nadrzędna</label>
+                <select id="category-parent-select" name="category_parent">
+                  <option value="0" selected>Kategoria główna</option>
+                </select>
+              </div>
 
-            <button type="submit">Dodaj kategorię</button>
-          </form>
+              <button type="submit">Dodaj kategorię</button>
+            </form>
+          </div>
+
+          <div class="editor-form__wrapper">
+            <h2>Przenieś kategorię</h2>
+
+            <form action="#" method="post" id="swap-category-form" class="category-form">
+              <div class="form-row">
+                <label for="category-to-swap-select">Kategoria do przeniesienia</label>
+                <select id="category-to-swap-select" name="swap_category">
+                  <option value="0" selected>Kategoria główna</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label for="new-category-swap-select">Nowa kategoria nadrzędna</label>
+                <select id="new-category-swap-select" name="new_category_swap">
+                  <option value="0" selected>Kategoria główna</option>
+                </select>
+              </div>
+
+              <button type="submit">Przenieś kategorię</button>
+            </form>
+          </div>
         </div>
 
         <div class="category-content">

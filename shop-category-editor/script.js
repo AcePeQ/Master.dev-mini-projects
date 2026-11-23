@@ -90,13 +90,16 @@ function init() {
     return sum;
   }
 
-  function renderCategoryOptions() {
-    const parentNode = document.querySelector("#category-parent-select");
-    const categoryArray = getCategoryNamesAndIdsArray(categories);
-    categoryArray.unshift({ label: "Kategoria główna", id: 0 })
+  function renderCategoryOptions(selector, addParentCategory) {
+    const parentNode = document.querySelector(selector);
+    if (!parentNode) return;
 
     parentNode.textContent = "";
 
+    const categoryArray = getCategoryNamesAndIdsArray(categories);
+    addParentCategory && categoryArray.unshift({ label: "Kategoria główna", id: 0 })
+
+    parentNode.textContent = "";
     categoryArray.forEach(category => {
       const optionEl = renderCategoryOption(category);
       parentNode.append(optionEl);
@@ -243,9 +246,11 @@ function init() {
     const categorySum = countCategoryItems(categories);
     categoryCountEl.textContent = `${categorySum} kategori${categorySum === 1 ? "a" : "e"}`;
 
-    renderCategoryOptions();
+    renderCategoryOptions("category-parent-select", true);
+    renderCategoryOptions("#category-to-swap-select", false);
+    renderCategoryOptions("#new-category-swap-select", true);
 
-    categoryParentListEl.textContent = ""
+    categoryParentListEl.textContent = "";
     renderCategoryList(categories, categoryParentListEl);
   }
 
