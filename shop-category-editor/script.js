@@ -59,6 +59,11 @@ function init() {
     listItemDeleteBtnEl.dataset.action = "delete";
     listItemDeleteBtnEl.ariaLabel = `Usuń kategorię ${item.name}`;
 
+    listItemDeleteBtnEl.addEventListener("click", () => {
+      findAndDeleteCategory(categories, item.id);
+      updatePage();
+    });
+
     listItemWrapperEl.append(
       listItemNameEl,
       listItemDeleteBtnEl
@@ -140,7 +145,9 @@ function init() {
       return;
     }
 
-    findAndAddCategory(categories, categoryName, categoryId);
+    const isCategoryAddedSucessfully = findAndAddCategory(categories, categoryName, categoryId);
+    if (!isCategoryAddedSucessfully) return;
+
     updatePage();
 
     formAddCategoryEl.reset();
@@ -156,7 +163,7 @@ function init() {
         children: [],
       })
 
-      return;
+      return true;
     }
 
     for (const category of arr) {
@@ -167,13 +174,37 @@ function init() {
           name: categoryName,
           children: [],
         })
-        return;
+
+        return true;
       }
 
       if (category.children.length > 0) {
-        findAndAddCategory(category.children, categoryName, parentId);
+        const wasAdded = findAndAddCategory(category.children, categoryName, parentId);
+
+        if (wasAdded) return true;
       }
     }
+
+    return false;
+  }
+
+  function findAndDeleteCategory(arr, categoryId) {
+
+    const index = arr.findIndex(category => category.id === categoryId);
+
+    if (index !== -1) {
+      arr.splice(index, 1);
+      return true;
+    }
+
+    for (const category of arr) {
+      if (category.children.length > 0) {
+        const wasDeleted = findAndDeleteCategory(category.children, categoryId);
+        if (wasDeleted) return true;
+      }
+    }
+
+    return false;
   }
 
   function getUnusedId() {
