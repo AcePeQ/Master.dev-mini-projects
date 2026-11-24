@@ -27,6 +27,7 @@ const categories = [
 
 function init() {
   const formAddCategoryEl = document.querySelector("#add-category-form");
+  const formSwapCategoryEl = document.querySelector("#swap-category-form");
 
   function renderCategoryList(arr, parentNode) {
     for (const category of arr) {
@@ -194,7 +195,6 @@ function init() {
   }
 
   function findAndDeleteCategory(arr, categoryId) {
-
     const index = arr.findIndex(category => category.id === categoryId);
 
     if (index !== -1) {
@@ -239,6 +239,58 @@ function init() {
     return result;
   }
 
+  function moveCategory(findCategoryId, targetCategoryId) {
+    if (findCategoryId === targetCategoryId) return;
+    const targetCategory = findCategoryById(categories, targetCategoryId);
+    const categoryToMove = findCategoryById(categories, findCategoryId);
+
+    if (!categoryToMove) return;
+    if (!targetCategory && targetCategoryId !== 0) return;
+    const isSwapIntoChildren = findCategoryById(categoryToMove.children, targetCategoryId);
+    if (isSwapIntoChildren) return;
+
+    const destinationCategories =
+      targetCategoryId === 0 ? categories : targetCategory.children;
+
+    if (destinationCategories.includes(categoryToMove)) return;
+
+    findAndDeleteCategory(categories, findCategoryId);
+
+    destinationCategories.push(categoryToMove);
+  }
+
+  function findCategoryById(arr, categoryId) {
+    for (const category of arr) {
+      if (category.id === categoryId) {
+        return category;
+      }
+
+      if (category.children.length > 0) {
+        const result = findCategoryById(category.children, categoryId);
+        if (result) {
+          return result;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  function handleSwapCategorySubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const formObject = Object.fromEntries(formData.entries());
+
+    const swapCategoryId = Number(formObject.swap_category);
+    const swapToCategoryId = Number(formObject.new_category_swap);
+
+    console.log(swapCategoryId)
+
+    moveCategory(swapCategoryId, swapToCategoryId);
+    updatePage();
+  }
+
   function updatePage() {
     const categoryCountEl = document.querySelector("#category-count");
     const categoryParentListEl = document.querySelector("#parent-list");
@@ -256,6 +308,7 @@ function init() {
 
   updatePage();
   formAddCategoryEl.addEventListener("submit", handleAddCategorySubmit);
+  formSwapCategoryEl.addEventListener("submit", handleSwapCategorySubmit);
 }
 
 init();
