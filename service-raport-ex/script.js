@@ -121,6 +121,27 @@ function init() {
     renderTicketList(selectedTickets);
   }
 
+  function handleTicketListClick(event) {
+    const target = event.target;
+    const ticketCloseBtn = target.closest("[data-action='close']");
+
+    if (!ticketCloseBtn) return;
+
+    const ticketCardEl = ticketCloseBtn.closest(".ticket-card");
+
+    if (!ticketCardEl) return;
+    const ticketId = Number(ticketCardEl.dataset.ticketId);
+
+    if (typeof ticketId !== "number") return;
+
+    handleTicketClose(ticketId);
+  }
+
+  function handleTicketClose(ticketId) {
+
+  }
+
+  ticketListEl.addEventListener("click", handleTicketListClick);
   renderTicketList(newTickets);
   initFiltersForm();
 }
