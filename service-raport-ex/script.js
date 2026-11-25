@@ -11,6 +11,33 @@ function init() {
     })
   }
 
+  function initFiltersForm() {
+    const filtersFormEl = document.querySelector("#filters-form");
+    const filterStatusEl = document.querySelector("#status-filter");
+
+
+    filterStatusEl.addEventListener("change", () => {
+      filtersFormEl.requestSubmit();
+    })
+    filtersFormEl.addEventListener("submit", handleFiltersSubmit);
+  }
+
+  function handleFiltersSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const formObject = Object.fromEntries(formData.entries());
+
+    const { search: query, status } = formObject;
+
+    const filters = {
+      query,
+      status,
+    }
+
+    updateTicketList(newTickets, filters);
+  }
+
   function createTicketItem(ticket) {
     const templateEl = document.querySelector("#ticket-template");
     const fragment = document.importNode(templateEl.content, true);
@@ -73,7 +100,26 @@ function init() {
     }
   }
 
+  function updateTicketList(tickets, filters) {
+    let selectedTickets = [...tickets];
+    const normalizedQueryFilter = filters.query.trim().toLowerCase();
+
+    if (normalizedQueryFilter.length > 0) {
+      selectedTickets = selectedTickets.filter(ticket => {
+        const normalizedTicketName = ticket.title.toLowerCase();
+        return normalizedTicketName.includes(normalizedQueryFilter);
+      });
+    }
+
+    if (filters.status !== "all") {
+      selectedTickets = selectedTickets.filter(ticket => ticket.status === filters.status);
+    }
+
+    renderTicketList(selectedTickets);
+  }
+
   renderTicketList(newTickets);
+  initFiltersForm();
 }
 
 init();
