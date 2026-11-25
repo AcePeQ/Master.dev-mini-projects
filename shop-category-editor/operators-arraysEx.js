@@ -30,8 +30,13 @@ function buildServiceReport(tickets) {
 
   const totalCount = newTickets.length;
   const activeCount = newTickets.filter(ticket => ticket.status === "open" || ticket.status === "in_progress").length;
-  const urgentCount = newTickets.filter(ticket => (ticket.priority === 0 || ticket.priority === 1) && ticket.status === "open" || ticket.status === "in_progress").length;
-  const totalEstimatedHours = newTickets.reduce((acc, ticket) => ticket.status === "open" || ticket.status === "in_progress" ? acc + ticket.estimatedHours : acc, 0);
+  const urgentCount = newTickets.filter(ticket => (ticket.priority === 0 || ticket.priority === 1) && (ticket.status === "open" || ticket.status === "in_progress")).length;
+  const totalEstimatedHours = newTickets.reduce((acc, ticket) => {
+    const isActive =
+      ticket.status === "open" || ticket.status === "in_progress";
+
+    return isActive ? acc + ticket.estimatedHours : acc;
+  }, 0);
 
   const byStatus = newTickets.reduce((acc, ticket) => {
     acc[ticket.status] += 1
@@ -43,13 +48,14 @@ function buildServiceReport(tickets) {
     closed: 0
   })
 
-  return {
+  const summary = {
     totalCount,
     activeCount,
     urgentCount,
     totalEstimatedHours,
     byStatus
   }
+
 }
 
 function createNewTicket(ticket) {
@@ -64,3 +70,13 @@ function createNewTicket(ticket) {
 }
 
 console.log(buildServiceReport(tickets));
+
+function getActiveTickets(tickets) {
+  return tickets.filter(ticket => {
+    const isActive = ticket.status === "open" || "in_progress";
+
+    return isActive;
+  });
+}
+
+console.log(getActiveTickets(tickets));
