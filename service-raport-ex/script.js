@@ -100,19 +100,22 @@ function init() {
     }
   }
 
-  function updateTicketList(tickets, filters) {
+  function updateTicketList(tickets, filters = null) {
     let selectedTickets = [...tickets];
-    const normalizedQueryFilter = filters.query.trim().toLowerCase();
 
-    if (normalizedQueryFilter.length > 0) {
-      selectedTickets = selectedTickets.filter(ticket => {
-        const normalizedTicketName = ticket.title.toLowerCase();
-        return normalizedTicketName.includes(normalizedQueryFilter);
-      });
-    }
+    if (filters !== null) {
+      const normalizedQueryFilter = filters?.query.trim().toLowerCase() ?? "";
 
-    if (filters.status !== "all") {
-      selectedTickets = selectedTickets.filter(ticket => ticket.status === filters.status);
+      if (normalizedQueryFilter.length > 0) {
+        selectedTickets = selectedTickets.filter(ticket => {
+          const normalizedTicketName = ticket.title.toLowerCase();
+          return normalizedTicketName.includes(normalizedQueryFilter);
+        });
+      }
+
+      if (filters?.status && filters.status !== "all") {
+        selectedTickets = selectedTickets.filter(ticket => ticket.status === filters.status);
+      }
     }
 
     renderTicketList(selectedTickets);
