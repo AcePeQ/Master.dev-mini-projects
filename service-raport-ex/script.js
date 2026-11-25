@@ -1,8 +1,10 @@
 function init() {
+  const ticketListEl = document.querySelector("#ticket-list");
+  const filtersFormEl = document.querySelector("#filters-form");
+
   const newTickets = tickets.map(createNewTicket);
 
   function renderTicketList(tickets) {
-    const ticketListEl = document.querySelector("#ticket-list");
     ticketListEl.textContent = "";
 
     tickets.forEach(ticket => {
@@ -12,9 +14,7 @@ function init() {
   }
 
   function initFiltersForm() {
-    const filtersFormEl = document.querySelector("#filters-form");
     const filterStatusEl = document.querySelector("#status-filter");
-
 
     filterStatusEl.addEventListener("change", () => {
       filtersFormEl.requestSubmit();
