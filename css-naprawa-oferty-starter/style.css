@@ -125,7 +125,7 @@ h1 {
   line-height: 1.12;
 }
 
-.page-intro > p:last-child {
+.page-intro>p:last-child {
   margin: 0;
   color: var(--color-muted);
   font-size: 1.0625rem;
@@ -149,19 +149,19 @@ h1 {
 }
 
 .offer-card__intro {
-  padding-inline: 24px;
+  padding: 24px;
   background: var(--color-soft);
 }
 
 .offer-card__intro h2 {
-  margin-block: 32px 12px;
+  margin-block: 0 12px;
   font-size: 1.75rem;
   line-height: 1.2;
   letter-spacing: -0.035em;
 }
 
 .offer-card__intro p {
-  margin-block: 0 24px;
+  margin: 0;
   color: #3f5a46;
 }
 
@@ -199,9 +199,13 @@ h1 {
 .benefits-list {
   margin-block-end: 28px;
   font-size: 0.9375rem;
+
+  list-style: initial;
+  list-style-position: outside;
+  padding-inline-start: 1.25em;
 }
 
-.benefits-list li + li {
+.benefits-list li+li {
   margin-block-start: 10px;
 }
 
@@ -218,8 +222,10 @@ h1 {
   outline: none;
   background: var(--color-accent);
   color: #ffffff;
-  font-weight: 700;
   cursor: pointer;
+
+  font: inherit;
+  font-weight: 700;
 }
 
 .offer-card__button:hover {
@@ -227,7 +233,7 @@ h1 {
 }
 
 .offer-card__button:focus-visible {
-  outline: 3px soild var(--color-focus);
+  outline: 3px solid var(--color-focus);
   outline-offset: 4px;
 }
 
@@ -236,6 +242,10 @@ h1 {
   color: var(--color-muted);
   font-size: 0.875rem;
   text-align: center;
+}
+
+.support-note a {
+  color: inherit;
 }
 
 .visit-note {
@@ -262,7 +272,7 @@ h1 {
   letter-spacing: -0.035em;
 }
 
-.visit-note > p:not(.eyebrow) {
+.visit-note>p:not(.eyebrow) {
   margin: 0;
   color: var(--color-muted);
 }
@@ -271,7 +281,7 @@ h1 {
   margin-block: 30px 0;
 }
 
-.visit-note dl > div {
+.visit-note dl>div {
   padding-block: 14px;
   border-block-start: 1px solid var(--color-border);
 }
