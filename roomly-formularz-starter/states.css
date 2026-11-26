@@ -1,0 +1,11 @@
+/* Ostatni blok CSS — Twoje reguły stanów formularza.
+   Gotowy wygląd: appearance.css. Wymagania: ZADANIE.md.
+   Nie musisz zmieniać HTML ani demo.js. */
+
+/* 1. Fokus kontrolek, przycisków i etykiety aktywnej grupy. */
+
+/* 2. :user-invalid / :user-valid i komunikat w odpowiednim .form-field. */
+
+/* 3. :has(), :checked, :disabled i accent-color dla dodatkowego wyposażenia. */
+
+/* 4. Przejścia przycisku oraz .addon-note, a także prefers-reduced-motion. */
