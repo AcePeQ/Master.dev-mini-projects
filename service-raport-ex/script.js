@@ -138,7 +138,9 @@ function init() {
   }
 
   function handleTicketClose(ticketId) {
-
+    const ticket = newTickets.find(ticket => ticket.id === ticketId);
+    ticket.status = "closed";
+    filtersFormEl.requestSubmit();
   }
 
   ticketListEl.addEventListener("click", handleTicketListClick);
