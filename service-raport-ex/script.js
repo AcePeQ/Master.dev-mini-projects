@@ -118,6 +118,7 @@ function init() {
       }
     }
 
+    updateStatus(tickets);
     renderTicketList(selectedTickets);
   }
 
@@ -141,6 +142,28 @@ function init() {
     const ticket = newTickets.find(ticket => ticket.id === ticketId);
     ticket.status = "closed";
     filtersFormEl.requestSubmit();
+  }
+
+  function updateStatus(tickets) {
+    const totalCountEl = document.querySelector("#total-count");
+    const activeCountEl = document.querySelector("#active-count");
+    const urgentCountEl = document.querySelector("#urgent-count");
+    const hoursCountEl = document.querySelector("#hours-count");
+
+    const totalCount = tickets.length;
+    const activeCount = tickets.filter(ticket => ticket.status === "open" || ticket.status === "in_progress").length;
+    const urgentCount = tickets.filter(ticket => (ticket.priority === 0 || ticket.priority === 1) && (ticket.status === "open" || ticket.status === "in_progress")).length;
+    const totalEstimatedHours = tickets.reduce((acc, ticket) => {
+      const isActive =
+        ticket.status === "open" || ticket.status === "in_progress";
+
+      return isActive ? acc + ticket.estimatedHours : acc;
+    }, 0);
+
+    totalCountEl.textContent = totalCount;
+    activeCountEl.textContent = activeCount;
+    urgentCountEl.textContent = urgentCount;
+    hoursCountEl.textContent = totalEstimatedHours;
   }
 
   ticketListEl.addEventListener("click", handleTicketListClick);
