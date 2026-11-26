@@ -104,7 +104,7 @@ function init() {
     let selectedTickets = [...tickets];
 
     if (filters !== null) {
-      const normalizedQueryFilter = filters?.query.trim().toLowerCase() ?? "";
+      const normalizedQueryFilter = filters?.query?.trim().toLowerCase() ?? "";
 
       if (normalizedQueryFilter.length > 0) {
         selectedTickets = selectedTickets.filter(ticket => {
@@ -133,13 +133,16 @@ function init() {
     if (!ticketCardEl) return;
     const ticketId = Number(ticketCardEl.dataset.ticketId);
 
-    if (typeof ticketId !== "number") return;
+    if (!Number.isInteger(ticketId)) return;
 
     handleTicketClose(ticketId);
   }
 
   function handleTicketClose(ticketId) {
     const ticket = newTickets.find(ticket => ticket.id === ticketId);
+
+    if (!ticket || ticket.status === "closed") return;
+
     ticket.status = "closed";
     filtersFormEl.requestSubmit();
   }
@@ -167,7 +170,7 @@ function init() {
   }
 
   ticketListEl.addEventListener("click", handleTicketListClick);
-  renderTicketList(newTickets);
+  updateTicketList(newTickets);
   initFiltersForm();
 }
 
