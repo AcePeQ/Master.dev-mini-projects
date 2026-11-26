@@ -1,0 +1,115 @@
+/* Tu piszesz układ. appearance.css zawiera gotowy wygląd.
+   Zadanie: ZADANIE.md. Przypominajka: LAYOUT-NOTATKA.md.
+   Początkowo strona jest ułożona głównie w zwykłym przepływie blokowym.
+   Kolejne sekcje są miejscem na Twoje reguły, a nie gotowym rozwiązaniem. */
+
+/* 1. Flex: .header-layout, .navigation-list,
+      .results-heading, .catalog-toolbar, .room-card__footer */
+.header-layout {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: start;
+
+      gap: 16px;
+}
+
+.navigation-list {
+      display: flex;
+      gap: 20px;
+}
+
+.results-heading {
+      display: flex;
+      justify-content: space-between;
+      flex-flow: row wrap;
+      gap: 20px;
+}
+
+.catalog-toolbar {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 20px;
+}
+
+.search-field {
+      flex-grow: 1;
+}
+
+.sort-field {
+      flex-basis: 300px;
+}
+
+.room-card__footer {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      gap: 20px;
+}
+
+/* 2. Grid: .catalog-layout — panel boczny i wyniki.
+      Zmiana układu całej strony przez media query. */
+
+.catalog-layout {
+      display: grid;
+      grid-template-columns: 14rem 1fr;
+      gap: 1.75rem;
+}
+
+@media (width <=850px) {
+      .catalog-layout {
+            grid-template-columns: 1fr;
+      }
+}
+
+/* 3. Grid: .room-grid — automatyczna liczba kolumn.
+      Uwzględnij małe kontenery i długą nazwę sali. */
+
+.room-grid {
+      --min-col-size: 16rem;
+
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(var(--min-col-size), 100%), 1fr));
+}
+
+/* 4. Wypełnienie wysokości kart i wyrównanie ich stopek w danym rzędzie. */
+
+.room-card {
+      display: flex;
+      flex-direction: column;
+
+      block-size: 100%;
+}
+
+.room-card__body {
+      display: flex;
+      flex-direction: column;
+
+      flex-grow: 1;
+      min-inline-size: 0;
+}
+
+.room-card__footer {
+      margin-block-start: auto;
+}
+
+.room-card__title {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+}
+
+/* 5. Container queries: .room-slot jest opakowaniem,
+      .room-card jest komponentem, którego układ ma reagować. */
+
+.room-slot {
+      container-name: room;
+      container-type: inline-size;
+}
+
+@container room (width >=28rem) {
+      .room-card {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+      }
+}

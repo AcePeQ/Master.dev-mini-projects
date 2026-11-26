@@ -4,10 +4,59 @@
 
 /* 1. Oznaczenie .room-card__badge względem .room-card__visual.
       Dekoracyjna kropka przez ::before. */
+.room-card__visual {
+      position: relative;
+}
+
+.room-card__badge {
+      position: absolute;
+
+      top: 12px;
+      right: 12px;
+}
 
 /* 2. Link .back-to-top względem okna — fixed. */
+
+.back-to-top {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+
+      z-index: 10;
+}
 
 /* 3. Na szerokim ekranie: sticky dla .site-header i .filters-panel.
       Na wąskim ekranie zwykły przepływ. */
 
+.site-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+
+      z-index: 10;
+}
+
+.filters-panel {
+      position: sticky;
+      top: 6.5rem;
+
+      z-index: 9;
+}
+
+@media (width <=850px) {
+
+      .site-header,
+      .filters-panel {
+            position: static;
+      }
+
+}
+
 /* 4. Naprawa nakładania .help-menu__panel i ustalenie warstw. */
+.catalog-toolbar {
+      position: static;
+}
+
+.help-menu__panel {
+      z-index: 9;
+}
