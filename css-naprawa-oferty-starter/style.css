@@ -142,17 +142,19 @@ h1 {
 }
 
 .offer-card {
+  --card-text-size: 1.125rem;
+
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: 20px;
   background: var(--color-surface);
   box-shadow: 0 16px 36px rgb(32 56 46 / 6%);
-  font-size: 1.125rem;
+  font-size: var(--card-text-size);
   line-height: 1.65;
 }
 
 .offer-card.offer-card--compact {
-  font-size: 1rem;
+  --card-text-size: 1rem;
 }
 
 .offer-card__intro {
@@ -195,7 +197,7 @@ h1 {
 .billing-note {
   margin-block: 10px 26px;
   color: var(--color-muted);
-  font-size: 0.875rem;
+  font-size: 0.875em;
 }
 
 .offer-card__body h3 {
@@ -205,7 +207,7 @@ h1 {
 
 .benefits-list {
   margin-block-end: 28px;
-  font-size: 0.9375rem;
+  font-size: 0.9375em;
 
   list-style: initial;
   list-style-position: outside;
@@ -247,7 +249,7 @@ h1 {
 .support-note {
   margin-block: 18px 0;
   color: var(--color-muted);
-  font-size: 0.875rem;
+  font-size: 0.875em;
   text-align: center;
 }
 

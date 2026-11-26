@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Roomly — ćwiczenie z układu katalogu sal spotkań." />
+  <title>Roomly — znajdź miejsce na spotkanie</title>
+  <link rel="stylesheet" href="./appearance.css" />
+  <link rel="stylesheet" href="./layout.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <header class="site-header">
+    <div class="container header-layout">
+      <a class="brand" href="#main" aria-label="Roomly — początek strony">roomly<span aria-hidden="true">.</span></a>
+      <nav aria-label="Nawigacja główna"><ul class="navigation-list"><li><a href="#rooms">Sale</a></li><li><a href="#recommended">Polecane</a></li><li><a href="#rezerwacja">Kontakt</a></li></ul></nav>
+      <a class="button button-secondary" href="#rezerwacja">Dodaj swoją przestrzeń</a>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <div class="page-heading"><p class="eyebrow">Spotkajmy się poza biurem</p><h1>Miejsce na dobre pomysły.</h1><p>Znajdź salę na warsztat, rozmowę z klientem albo dzień pracy zespołu.</p></div>
+
+    <div class="catalog-layout">
+      <aside class="catalog-sidebar" aria-label="Filtry i polecana sala">
+        <section class="filters-panel" aria-labelledby="filters-title">
+          <h2 id="filters-title">Dopasuj miejsce</h2>
+          <div class="filter-field"><label for="district">Dzielnica</label><select id="district"><option>Wszystkie dzielnice</option><option>Wola</option><option>Centrum</option><option>Mokotów</option></select></div>
+          <div class="filter-field"><label for="capacity">Liczba osób</label><select id="capacity"><option>Dowolna</option><option>Do 6 osób</option><option>Od 7 do 16 osób</option></select></div>
+          <fieldset><legend>Na miejscu</legend><label class="checkbox-label"><input type="checkbox" /> Ekran lub projektor</label><label class="checkbox-label"><input type="checkbox" /> Tablica</label><label class="checkbox-label"><input type="checkbox" /> Dostęp do kawy</label></fieldset>
+          <button class="button filters-button" type="button">Pokaż sale</button>
+        </section>
+        <section class="sidebar-pick" aria-labelledby="sidebar-pick-title"><h2 id="sidebar-pick-title">Warto sprawdzić</h2><div class="room-slot"><article class="room-card" aria-labelledby="room-sidebar">
+      <div class="room-card__visual" data-tone="sage" aria-hidden="true"><span class="room-number">01</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Wola</p>
+        <h3 id="room-sidebar" class="room-card__title">Studio Zielone</h3>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 6 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>85 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: Studio Zielone">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></div></section>
+      </aside>
+
+      <section id="rooms" class="catalog-results" aria-labelledby="rooms-title">
+        <div class="results-heading"><div><p class="eyebrow">Warszawa</p><h2 id="rooms-title">Sale na spotkania</h2></div><p class="result-count">6 przestrzeni</p></div>
+        <div class="catalog-toolbar">
+          <div class="search-field"><label for="search">Szukaj sali</label><input id="search" type="search" placeholder="Nazwa lub lokalizacja" /></div>
+          <div class="sort-field"><label for="sort">Sortowanie</label><select id="sort"><option>Polecane</option><option>Cena rosnąco</option><option>Cena malejąco</option></select></div>
+        </div>
+        <section id="recommended" class="spotlight" aria-labelledby="spotlight-title"><h3 id="spotlight-title" class="eyebrow">Polecana przestrzeń</h3><div class="room-slot"><article class="room-card" aria-labelledby="room-wide">
+      <div class="room-card__visual" data-tone="sage" aria-hidden="true"><span class="room-number">01</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Wola</p>
+        <h4 id="room-wide" class="room-card__title">Studio Zielone</h4>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 6 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>85 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: Studio Zielone">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></div></section>
+        <ul class="room-grid" aria-label="Wszystkie dostępne sale"><li class="room-slot"><article class="room-card" aria-labelledby="room-studio">
+      <div class="room-card__visual" data-tone="sage" aria-hidden="true"><span class="room-number">01</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Wola</p>
+        <h3 id="room-studio" class="room-card__title">Studio Zielone</h3>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 6 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>85 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: Studio Zielone">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></li>
+<li class="room-slot"><article class="room-card" aria-labelledby="room-loft">
+      <div class="room-card__visual" data-tone="sand" aria-hidden="true"><span class="room-number">02</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Centrum</p>
+        <h3 id="room-loft" class="room-card__title">Loft na warsztaty i spotkania zespołu</h3>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 16 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>160 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: Loft na warsztaty i spotkania zespołu">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></li>
+<li class="room-slot"><article class="room-card" aria-labelledby="room-focus">
+      <div class="room-card__visual" data-tone="blue" aria-hidden="true"><span class="room-number">03</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Mokotów</p>
+        <h3 id="room-focus" class="room-card__title">Focus Room</h3>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 4 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>65 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: Focus Room">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></li>
+<li class="room-slot"><article class="room-card" aria-labelledby="room-boardroom">
+      <div class="room-card__visual" data-tone="rose" aria-hidden="true"><span class="room-number">04</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Wola</p>
+        <h3 id="room-boardroom" class="room-card__title">BoardroomInternationalStrategyWorkshop2026</h3>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 10 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>120 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: BoardroomInternationalStrategyWorkshop2026">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></li>
+<li class="room-slot"><article class="room-card" aria-labelledby="room-atelier">
+      <div class="room-card__visual" data-tone="sand" aria-hidden="true"><span class="room-number">05</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Żoliborz</p>
+        <h3 id="room-atelier" class="room-card__title">Atelier</h3>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 8 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>110 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: Atelier">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></li>
+<li class="room-slot"><article class="room-card" aria-labelledby="room-sprint">
+      <div class="room-card__visual" data-tone="sage" aria-hidden="true"><span class="room-number">06</span><span class="room-visual-label">Miejsce na spotkanie</span></div>
+      <div class="room-card__body">
+        <p class="room-card__location">Warszawa · Praga</p>
+        <h3 id="room-sprint" class="room-card__title">Sala Sprint</h3>
+        <p class="room-card__description">Jasna przestrzeń z ekranem, tablicą i dostępem do kawy.</p>
+        <ul class="room-card__features" aria-label="Wyposażenie i pojemność"><li>Do 12 osób</li><li>Wi-Fi</li></ul>
+        <div class="room-card__footer"><p class="room-card__price"><strong>140 zł</strong><span> / godz.</span></p><a class="button button-small" href="#rezerwacja" aria-label="Sprawdź salę: Sala Sprint">Sprawdź <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article></li></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer id="rezerwacja" class="site-footer container"><p><strong>roomly.</strong> Miejsce na dobre pomysły.</p><p>Projekt ćwiczeniowy. Filtry, wyszukiwarka i rezerwacje są makietą.</p></footer>
+</body>
+</html>

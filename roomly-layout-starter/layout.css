@@ -1,0 +1,18 @@
+/* Tu piszesz układ. appearance.css zawiera gotowy wygląd.
+   Zadanie: ZADANIE.md. Przypominajka: LAYOUT-NOTATKA.md.
+   Początkowo strona jest ułożona głównie w zwykłym przepływie blokowym.
+   Kolejne sekcje są miejscem na Twoje reguły, a nie gotowym rozwiązaniem. */
+
+/* 1. Flex: .header-layout, .navigation-list,
+      .results-heading, .catalog-toolbar, .room-card__footer */
+
+/* 2. Grid: .catalog-layout — panel boczny i wyniki.
+      Zmiana układu całej strony przez media query. */
+
+/* 3. Grid: .room-grid — automatyczna liczba kolumn.
+      Uwzględnij małe kontenery i długą nazwę sali. */
+
+/* 4. Wypełnienie wysokości kart i wyrównanie ich stopek w danym rzędzie. */
+
+/* 5. Container queries: .room-slot jest opakowaniem,
+      .room-card jest komponentem, którego układ ma reagować. */
