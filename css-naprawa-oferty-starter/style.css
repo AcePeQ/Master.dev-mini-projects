@@ -13,6 +13,9 @@
   --color-soft: #e2efdf;
   --color-focus: #1b6041;
   --content-width: 1000px;
+
+  --ff-segoe: "Segoe UI", system-ui, sans-serif;
+  --ff-arial: Arial, sans-serif
 }
 
 *,
@@ -25,7 +28,7 @@ body {
   margin: 0;
   background: var(--color-page);
   color: var(--color-text);
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: var(--ff-segoe);
   line-height: 1.6;
 }
 
@@ -41,7 +44,7 @@ ul {
 }
 
 button {
-  font: 400 12px Arial, sans-serif;
+  font: 400 12px var(--ff-arial);
 }
 
 .container {
@@ -148,6 +151,10 @@ h1 {
   line-height: 1.65;
 }
 
+.offer-card.offer-card--compact {
+  font-size: 1rem;
+}
+
 .offer-card__intro {
   padding: 24px;
   background: var(--color-soft);
@@ -216,7 +223,7 @@ h1 {
   gap: 16px;
   inline-size: 100%;
   min-block-size: 54px;
-  padding: 14px 18px;
+  padding: 1em 1.2em;
   border: 0;
   border-radius: 10px;
   outline: none;
