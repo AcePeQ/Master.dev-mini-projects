@@ -1,0 +1,13 @@
+/* Blok 4 — Twoje reguły pozycjonowania.
+   Ten arkusz jest wczytywany po layout.css i extras.css.
+   Możesz tu nadpisywać także celowo błędne wartości z extras.css. */
+
+/* 1. Oznaczenie .room-card__badge względem .room-card__visual.
+      Dekoracyjna kropka przez ::before. */
+
+/* 2. Link .back-to-top względem okna — fixed. */
+
+/* 3. Na szerokim ekranie: sticky dla .site-header i .filters-panel.
+      Na wąskim ekranie zwykły przepływ. */
+
+/* 4. Naprawa nakładania .help-menu__panel i ustalenie warstw. */

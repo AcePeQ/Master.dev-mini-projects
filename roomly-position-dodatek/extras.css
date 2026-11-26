@@ -1,0 +1,70 @@
+/* Gotowy wygląd dodatków. Pozycjonowanie dopisujesz w position.css.
+   Trzy reguły warstw na końcu tworzą celowy problem do zdiagnozowania. */
+
+.room-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.4em 0.7em;
+  border: 1px solid #d0ddc8;
+  border-radius: 999px;
+  background: #f4f8ed;
+  color: #2b5a39;
+  font-size: 0.6875rem;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.back-to-top {
+  display: grid;
+  place-items: center;
+  inline-size: 2.875rem;
+  block-size: 2.875rem;
+  border: 1px solid #c4d2c1;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 6px 18px rgb(25 45 30 / 14%);
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.help-menu {
+  position: relative;
+  flex-basis: 100%;
+  font-size: 0.875rem;
+}
+
+.help-menu > summary {
+  display: inline-block;
+  padding: 8px 0;
+  color: var(--accent);
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+
+.help-menu > summary::-webkit-details-marker { display: none; }
+.help-menu > summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.help-menu[open] > summary { text-decoration: underline; text-underline-offset: 0.2em; }
+
+.help-menu__panel {
+  position: absolute;
+  inset-block-start: calc(100% + 8px);
+  inset-inline-start: 0;
+  inline-size: min(100%, 20rem);
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 12px 30px rgb(25 45 30 / 18%);
+}
+
+.help-menu__panel h3 { margin: 0 0 12px; font-size: 1rem; line-height: 1.3; }
+.help-menu__panel p { margin: 0 0 12px; color: var(--muted); }
+.help-menu__panel a { color: var(--accent); font-weight: 650; }
+
+/* Celowy błąd kolejności nakładania: sprawdź także przodków panelu. */
+.catalog-toolbar { position: relative; z-index: 1; }
+.spotlight { position: relative; z-index: 2; }
+.help-menu__panel { z-index: 9999; }
