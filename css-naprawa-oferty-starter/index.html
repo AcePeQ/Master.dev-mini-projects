@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ćwiczenie z diagnozowania CSS: oferta coworkingu FlowSpace." />
+  <title>FlowSpace — Pakiet Flex</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="container header-layout">
+      <a class="brand" href="#main" aria-label="FlowSpace — początek strony">flowspace<span aria-hidden="true">.</span></a>
+      <nav aria-label="Nawigacja główna">
+        <ul class="navigation-list">
+          <li><a href="#offer">Oferta</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <div class="page-intro">
+      <p class="eyebrow">Coworking w Twoim rytmie</p>
+      <h1>Miejsce na dobry dzień pracy.</h1>
+      <p>Wpadaj wtedy, kiedy potrzebujesz skupienia. Resztą zajmiemy się my.</p>
+    </div>
+
+    <div class="offer-layout">
+      <article id="offer" class="offer-card" aria-labelledby="offer-title">
+        <div class="offer-card__intro">
+          <h2 id="offer-title">Pakiet Flex</h2>
+          <p>Biurko na kilka dni w miesiącu, bez stałego zobowiązania.</p>
+        </div>
+
+        <div class="offer-card__body">
+          <p class="price"><strong>349 zł</strong><span> / miesiąc</span></p>
+          <p class="billing-note">Wszystko, czego potrzebujesz, żeby zacząć.</p>
+
+          <h3>W pakiecie</h3>
+          <ul class="benefits-list">
+            <li>8 wejść do wspólnej przestrzeni pracy</li>
+            <li>Szybkie Wi-Fi i wygodne biurko</li>
+            <li>Kawa, herbata i dostęp do kuchni</li>
+            <li>2 godziny w sali spotkań</li>
+          </ul>
+
+          <button class="offer-card__button" type="button">Wybieram Pakiet Flex <span aria-hidden="true">↗</span></button>
+
+          <p id="contact" class="support-note">Masz pytania? <a href="mailto:kontakt@flowspace.example">Napisz do nas</a>.</p>
+        </div>
+      </article>
+
+      <aside class="visit-note" aria-labelledby="visit-title">
+        <span class="visit-icon" aria-hidden="true">↗</span>
+        <p class="eyebrow">Zanim zdecydujesz</p>
+        <h2 id="visit-title">Poznaj przestrzeń.</h2>
+        <p>Przyjdź, zobacz miejsce i sprawdź, czy dobrze Ci się u nas pracuje.</p>
+        <dl>
+          <div><dt>Dostęp</dt><dd>Pon.–pt., 8:00–18:00</dd></div>
+          <div><dt>Pierwsza wizyta</dt><dd>Po wcześniejszym umówieniu</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer container">
+    <p>FlowSpace — projekt ćwiczeniowy. Oferta i dane są przykładowe.</p>
+  </footer>
+</body>
+</html>
