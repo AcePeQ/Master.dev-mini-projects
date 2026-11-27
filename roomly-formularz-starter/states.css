@@ -3,9 +3,81 @@
    Nie musisz zmieniać HTML ani demo.js. */
 
 /* 1. Fokus kontrolek, przycisków i etykiety aktywnej grupy. */
+.form-control:focus-visible {
+   outline: 2px solid var(--focus);
+   outline-offset: 3px;
+}
+
+.form-field:focus-within>label {
+   color: var(--focus);
+}
+
+.form-actions .button:focus-visible {
+   outline: 2px solid var(--focus);
+   outline-offset: 3px;
+}
 
 /* 2. :user-invalid / :user-valid i komunikat w odpowiednim .form-field. */
+.form-control[required]:user-invalid {
+   border-color: var(--error);
+   background-color: var(--error-soft);
+}
+
+.form-field:has(.form-control[required]:user-invalid) .field-error {
+   display: block;
+}
+
+.form-control[required]:user-valid {
+   border-color: green;
+}
 
 /* 3. :has(), :checked, :disabled i accent-color dla dodatkowego wyposażenia. */
+input[type="checkbox"]:checked {
+   accent-color: red;
+}
+
+.addon-option:has(#projector:checked) {
+   border-color: red;
+   background-color: green;
+}
+
+.addon-option:has(input:disabled) {
+   opacity: 0.8;
+   cursor: initial;
+}
+
+#projector-note {
+   opacity: 1;
+   transform: translateY(0);
+   visibility: visible;
+
+   transition: opacity 200ms, transform 200ms;
+}
+
+.addons-group:has(#projector:not(:checked)) #projector-note {
+   opacity: 0;
+   transform: translateY(6px);
+   visibility: hidden;
+}
 
 /* 4. Przejścia przycisku oraz .addon-note, a także prefers-reduced-motion. */
+.button-primary {
+   transition: 200ms transform;
+}
+
+.button-primary:hover {
+   transform: translateY(-4px);
+}
+
+.button-primary:active {
+   transform: translate(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+   .button-primary,
+   #projector-note {
+      transition: none;
+      transform: translateY(0);
+   }
+}
