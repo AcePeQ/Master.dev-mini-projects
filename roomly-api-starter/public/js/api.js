@@ -1,5 +1,15 @@
 export async function fetchRooms(criteria) {
-  // TODO: GET /api/rooms z parametrami city, people i scenario.
-  // Sprawdź odpowiedź HTTP, odczytaj JSON i zwróć tablicę rooms.
-  throw new Error("Uzupełnij fetchRooms w api.js.");
+  const params = new URLSearchParams(criteria);
+
+  const res = await fetch(`http://127.0.0.1:4173/api/rooms?${params.toString()}`, {
+    method: "GET",
+  })
+
+  if (!res.ok) {
+    throw new Error(`Błąd HTTP! Status ${res.status}`)
+  }
+
+  const data = await res.json();
+
+  return data.rooms;
 }

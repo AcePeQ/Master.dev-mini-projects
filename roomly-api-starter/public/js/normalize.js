@@ -1,5 +1,23 @@
 export function normalizeRooms(rawRooms) {
-  // TODO: przygotuj nowe obiekty dla UI, korzystając z destrukturyzacji.
-  // Oczekiwany kształt danych znajdziesz w ZADANIE.md.
-  throw new Error("Uzupełnij normalizeRooms w normalize.js.");
+  const newRooms = rawRooms.map(room => {
+    const { id,
+      name: title,
+      location: { city, district },
+      capacity,
+      pricing: { hourly: hourlyRate },
+      features
+    } = room;
+
+    return {
+      id,
+      title,
+      city,
+      district,
+      capacity,
+      hourlyRate,
+      features
+    }
+  })
+
+  return newRooms;
 }
