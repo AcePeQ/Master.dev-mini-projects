@@ -1,0 +1,8 @@
+[
+  { "id": 101, "name": "Studio Zielone", "location": { "code": "warszawa", "city": "Warszawa", "district": "Wola" }, "capacity": 6, "pricing": { "hourly": 85, "currency": "PLN" }, "features": ["Wi-Fi", "Tablica"] },
+  { "id": 102, "name": "Loft Warsztatowy", "location": { "code": "warszawa", "city": "Warszawa", "district": "Centrum" }, "capacity": 16, "pricing": { "hourly": 160, "currency": "PLN" }, "features": ["Wi-Fi", "Projektor", "Kawa"] },
+  { "id": 103, "name": "Focus Room", "location": { "code": "warszawa", "city": "Warszawa", "district": "Mokotów" }, "capacity": 4, "pricing": { "hourly": 65, "currency": "PLN" }, "features": ["Wi-Fi", "Ekran"] },
+  { "id": 201, "name": "Przystań", "location": { "code": "gdansk", "city": "Gdańsk", "district": "Wrzeszcz" }, "capacity": 8, "pricing": { "hourly": 100, "currency": "PLN" }, "features": ["Wi-Fi", "Tablica", "Kawa"] },
+  { "id": 202, "name": "Sala Portowa", "location": { "code": "gdansk", "city": "Gdańsk", "district": "Śródmieście" }, "capacity": 12, "pricing": { "hourly": 140, "currency": "PLN" }, "features": ["Wi-Fi", "Projektor"] },
+  { "id": 203, "name": "Kameralna", "location": { "code": "gdansk", "city": "Gdańsk", "district": "Oliwa" }, "capacity": 3, "pricing": { "hourly": 70, "currency": "PLN" }, "features": ["Wi-Fi", "Ekran"] }
+]

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Roomly — projekt uzupełniający: asynchroniczność, moduły i debugger." />
+  <title>Roomly — znajdź salę</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <header class="site-header"><div class="container header-layout"><a class="brand" href="#main">roomly<span aria-hidden="true">.</span></a><p>Miejsce na dobre pomysły.</p></div></header>
+  <main id="main" class="container" tabindex="-1">
+    <div class="page-heading"><p class="eyebrow">Twoje kolejne spotkanie</p><h1>Znajdź miejsce dla zespołu.</h1><p>Wybierz miasto i liczbę osób. Sprawdź przestrzenie dopasowane do spotkania.</p></div>
+
+    <form id="search-form" class="search-panel">
+      <div class="search-fields">
+        <div class="field"><label for="city">Miasto</label><select id="city" name="city"><option value="warszawa">Warszawa</option><option value="gdansk">Gdańsk</option></select></div>
+        <div class="field"><label for="people">Liczba osób</label><input id="people" name="people" type="number" min="1" max="20" step="1" value="4" required /></div>
+        <button id="search-button" class="button" type="submit">Sprawdź sale <span aria-hidden="true">↗</span></button>
+      </div>
+      <details class="exercise-tools"><summary>Scenariusz ćwiczenia</summary><div class="scenario-field"><label for="scenario">Odpowiedź lokalnego API</label><select id="scenario" name="scenario"><option value="normal">Poprawna odpowiedź</option><option value="slow">Wolna odpowiedź — około 1,8 s</option><option value="empty">Brak pasujących sal</option><option value="http-error">Błąd HTTP 503</option><option value="bad-json">HTTP 200, ale błędny JSON</option><option value="network-error">Przerwane połączenie</option></select><p>Ustaw scenariusz i ponownie sprawdź sale. Dane i zachowania są demonstracyjne.</p></div></details>
+    </form>
+
+    <section id="results-section" class="results-section" aria-labelledby="results-title" aria-busy="false">
+      <div class="results-heading"><h2 id="results-title">Dostępne przestrzenie</h2><p id="results-status" role="status">Wybierz kryteria i sprawdź sale.</p></div>
+      <p id="loading-hint" class="loading-hint" role="status" hidden></p>
+      <div id="error-panel" class="error-panel" role="alert" hidden><h3>Nie udało się pobrać sal</h3><p id="error-message"></p><p>Zmień scenariusz lub spróbuj ponownie przyciskiem wyszukiwania.</p></div>
+      <p id="empty-state" class="empty-state" hidden>Brak pasujących sal. Spróbuj zmienić miasto lub liczbę osób.</p>
+      <ul id="room-list" class="room-grid" aria-label="Wyniki wyszukiwania"></ul>
+    </section>
+  </main>
+  <footer class="site-footer container"><p>Projekt ćwiczeniowy. Wyniki są przykładowe i nie potwierdzają dostępności rzeczywistych terminów.</p></footer>
+
+  <template id="room-template"><li><article class="room-card"><div class="room-card__visual" aria-hidden="true"><span data-field="visual-number"></span><span>Miejsce na spotkanie</span></div><div class="room-card__body"><p class="room-card__location" data-field="location"></p><h3 data-field="title"></h3><p class="room-card__capacity" data-field="capacity"></p><p class="room-card__features" data-field="features"></p><p class="room-card__price"><strong data-field="hourly-rate"></strong><span> / godz.</span></p></div></article></li></template>
+</body>
+</html>
